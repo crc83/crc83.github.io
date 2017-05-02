@@ -57,8 +57,9 @@ label.handwriting-label {
 }
 
 h3.writingtask-title { 
-	font-size: 32px; 
-	line-height: 16px;
+	font-size: 32px !important; 
+	line-height: 16px !important;
+	color: black;
 }
 
 span.writingtask-label { 
