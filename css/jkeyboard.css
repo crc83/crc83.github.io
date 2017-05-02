@@ -60,3 +60,7 @@
   width: 69px;
   background: url("../assets/backspace.png") no-repeat center center;
 }
+
+.jkeyboard .jline .red {
+  background-color: rgb(255,64,129);
+}
