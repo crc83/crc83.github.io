@@ -1,0 +1,79 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jkeyboard.css">
+	<link rel="stylesheet" type="text/css" href="css/handwriting.css">
+	<script defer type="text/javascript" src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jkeyboard.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jspdf.min.js"></script>
+
+</head>
+<body>
+	<h1 class="mdl-layout-title">Редагування прописів</h1>
+	<button id="generateWritingTask" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Генерувати</button>
+	<button id="getPdf" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Відкрити для друку</button>
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--6-col">
+				<form action="#" align="center">
+					<div class="mdl-textfield mdl-js-textfield">
+						<textarea class="mdl-textfield__input handwriting-input"  id="textInput" cols="40" rows="5"></textarea>
+						<label class="mdl-textfield__label handwriting-label" for="sample1">Аа</label>
+					</div>
+					<div id="keyboard"></div>
+				</form>
+		</div>
+		<div id="pdfDiv" class="mdl-cell mdl-cell--6-col demo-card-wide mdl-card mdl-shadow--2dp">
+			<div id="pdfContent">
+				<div class="writingtask-right">&nbsp;<span class="label"></span></div>
+				<div class="writingtask-clear"></div>
+				<div class="writingtask-clear"></div>
+				<div class="writingtask-tabtitle"><h3 class="writingtask-title">ПРОПИСИ</h3></div>
+				<div class="writingtask-clear"></div>
+				<div class="writingtask-wrap">
+					<div id="taskContent" class="writingtask-handwriting">
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+
+	<script>
+	$('#keyboard').jkeyboard({
+
+		layout: "exersise",
+		input: $('#textInput')
+	});
+	
+	$("#generateWritingTask").on('click', function () {
+		var template = document.getElementById('textInput').value.split('\n');
+		//14 lines max
+		var tokens = template.length;
+		
+		var div = document.getElementById('taskContent');
+		div.innerHTML =''
+		for (var i = 0; i < tokens; i++) {
+			div.innerHTML += `<span class="writingtask-bold">${template[i]}</span><span> ${template[i]} ${template[i]} ${template[i]} ${template[i]} ${template[i]}</span><br>`
+		}
+	});
+	
+	$("#getPdf").on('click', function () {
+		w=window.open();
+		w.document.write(`
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/preview.css">
+	<meta charset="UTF-8">
+</head>
+<body>
+		`)
+		w.document.write($('#pdfContent').html());});
+		w.document.write(`
+</body>
+		`);
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+
+@font-face {
+	font-family: schooldash;
+	src: url("fonts/school-dash.woff");
+}
+@font-face {
+	font-family: school;
+	src: url("fonts/school.woff");
+}
+
+
+body { 
+	margin: 0; 
+	padding: 70px 70px 70px 80px; 
+}
+
+.writingtask-clear { 
+	display: block; 
+	height: 1px; 
+	clear: both 
+}
+
+.writingtask-right {
+	text-align: right; 
+}
+
+.writingtask-tabtitle { 
+	color: black; 
+	margin: 16px auto 6px auto; 
+	text-align: center; 
+	width: 100%;
+}
+
+h3.writingtask-title { 
+	font-size: 32px; 
+	color: black;
+	line-height: 16px;
+}
+
+span.writingtask-label { 
+	font-size: 16px; 
+	color: #222; 
+}
+
+div.writingtask-handwriting { 
+	margin: 0; 
+	padding: 0; 
+	font-family: schooldash; 
+	font-size: 68px; 
+	line-height: 76px; 
+}
+
+span.writingtask-latin { font-family: school; }
+span.writingtask-bold  { font-family: school; }
+span.writingtask-normal  { font-family: school; color:#bbbbbb; }
+
+body {
+	width: 860px; 
+	height: 1280px; 
+	background: url("preview_background.jpg") 
+	no-repeat 0 0;
+	-webkit-print-color-adjust: exact;
+}
+
