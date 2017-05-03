@@ -4,6 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" type="text/css" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 	<link rel="stylesheet" type="text/css" href="css/jkeyboard.css">
+	<link rel="stylesheet" type="text/css" href="css/schoolfonts.css">
 	<link rel="stylesheet" type="text/css" href="css/handwriting.css">
 	<script defer type="text/javascript" src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery-1.10.1.min.js"></script>
@@ -16,9 +17,10 @@
 	<button id="getPdf" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Відкрити для друку</button>
 	<div class="mdl-grid">
 		<div class="mdl-cell mdl-cell--6-col">
+			<h2 class="mdl-typography--title">Не більше 14-ти рядків та до 20 символів у рядку. Деякі літери або слова можна зробити без пунктиру <b>@чорним@</b> та <font color='gray'>#сірим#</font>. Виділіть їх відповідно @ або #.</h2>
 				<form action="#" align="center">
 					<div class="mdl-textfield mdl-js-textfield">
-						<textarea class="mdl-textfield__input handwriting-input"  id="textInput" cols="40" rows="5"></textarea>
+						<textarea class="mdl-textfield__input handwriting-input"  id="textInput" cols="60" rows="5"></textarea>
 						<label class="mdl-textfield__label handwriting-label" for="sample1">Аа</label>
 					</div>
 					<div id="keyboard"></div>
@@ -54,15 +56,19 @@
 		var div = document.getElementById('taskContent');
 		div.innerHTML =''
 		for (var i = 0; i < tokens; i++) {
-			div.innerHTML += `<span class="writingtask-bold">${template[i]}</span><span> ${template[i]} ${template[i]} ${template[i]} ${template[i]} ${template[i]}</span><br>`
+			var tokenWithBold = template[i].replace(/@[\u0000-\u001F]+|[\u0021-\uffff]+@/g, function blodIt(x){return `<span class="writingtask-bold">${x.replace('@','').replace('@','')}</span>`});
+			var tokenWithBoldAndItalic = tokenWithBold.replace(/#[\u0000-\u001F]+|[\u0021-\uffff]+#/g, function italicIt(x){return `<span class="writingtask-italic">${x.replace('#','').replace('#','')}</span>`});
+			div.innerHTML += `${tokenWithBoldAndItalic}<br>`
 		}
 	});
+	
 	
 	$("#getPdf").on('click', function () {
 		w=window.open();
 		w.document.write(`
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="css/schoolfonts.css">
 	<link rel="stylesheet" type="text/css" href="css/preview.css">
 	<meta charset="UTF-8">
 </head>
