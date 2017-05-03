@@ -167,7 +167,7 @@
 							key_container.addClass(key).html(function_keys[key].text)
 						}
 						else if (key.indexOf('*') > -1) {
-							key_container.addClass('red').html(key.replace('*',''))
+							key_container.addClass('letter red').html(key.replace('*',''))
 						} else {
 							key_container.addClass('letter').html(key)
 						}
