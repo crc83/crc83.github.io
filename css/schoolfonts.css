@@ -7,6 +7,16 @@
 	src: url("fonts/school.woff");
 }
 
+@font-face {
+	font-family: schooltailsdash;
+	src: url("fonts/school-tails-dash.woff");
+}
+@font-face {
+	font-family: schooltails;
+	src: url("fonts/school-tails.woff");
+}
+
+
 .writingtask-clear { 
 	display: block; 
 	height: 1px; 
@@ -43,9 +53,12 @@ div.writingtask-handwriting {
 	line-height: 76px !important; 
 }
 
+span.writingtask-underline { 
+	font-family: schooltailsdash !important;
+}
+
 span.writingtask-italic { 
-	font-family: school !important;
-	color:gray !important; 	
+	font-family: schooltails !important;
 }
 
 span.writingtask-bold { 
@@ -53,6 +66,5 @@ span.writingtask-bold {
 }
 
 span.writingtask-normal { 
-	font-family: schooldash !important; 
-	color:#bbbbbb !important; 
+	font-family: schooldash !important;  
 }

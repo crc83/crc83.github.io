@@ -17,7 +17,13 @@
 	<button id="getPdf" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Відкрити для друку</button>
 	<div class="mdl-grid">
 		<div class="mdl-cell mdl-cell--6-col">
-			<h2 class="mdl-typography--title">Не більше 14-ти рядків та до 20 символів у рядку. Деякі літери або слова можна зробити без пунктиру <b>@чорним@</b> та <font color='gray'>#сірим#</font>. Виділіть їх відповідно @ або #.</h2>
+			<h2 class="mdl-typography--title">
+<p>Не більше 14-ти рядків та до 20 символів у рядку.</p>
+<ul>
+<li>Деякі літери або слова можна зробити без пунктиру <b>@чорним@</b>.</li>
+<li>Якщо хочете щоб букви мали хвостики то виділіть слово <b>#отак#</b>.</li>
+<li>З хвостиками і без пунктиру чорним <b>!отак!</b>.</li>
+</h2>
 				<form action="#" align="center">
 					<div class="mdl-textfield mdl-js-textfield">
 						<textarea class="mdl-textfield__input handwriting-input"  id="textInput" cols="60" rows="5"></textarea>
@@ -56,9 +62,10 @@
 		var div = document.getElementById('taskContent');
 		div.innerHTML =''
 		for (var i = 0; i < tokens; i++) {
-			var tokenWithBold = template[i].replace(/@[\u0000-\u001F]+|[\u0021-\uffff]+@/g, function blodIt(x){return `<span class="writingtask-bold">${x.replace('@','').replace('@','')}</span>`});
-			var tokenWithBoldAndItalic = tokenWithBold.replace(/#[\u0000-\u001F]+|[\u0021-\uffff]+#/g, function italicIt(x){return `<span class="writingtask-italic">${x.replace('#','').replace('#','')}</span>`});
-			div.innerHTML += `${tokenWithBoldAndItalic}<br>`
+			var tokenBold = template[i].replace(/@[\u0000-\u001F]+|[\u0021-\uffff]+@/g, function blodIt(x){return `<span class="writingtask-bold">${x.replace('@','').replace('@','')}</span>`});
+			var tokenBoldItalic = tokenBold.replace(/#[\u0000-\u001F]+|[\u0021-\uffff]+#/g, function italicIt(x){return `<span class="writingtask-italic">${x.replace('#','').replace('#','')}</span>`});
+			var tokenBoldItalicUnderline = tokenBoldItalic.replace(/![\u0000-\u001F]+|[\u0021-\uffff]+!/g, function italicIt(x){return `<span class="writingtask-underline">${x.replace('!','').replace('!','')}</span>`});
+			div.innerHTML += `${tokenBoldItalicUnderline}<br>`
 		}
 	});
 	
